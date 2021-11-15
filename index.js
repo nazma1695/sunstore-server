@@ -87,6 +87,14 @@ async function run() {
       const result = await reviewCollection.insertOne(req.body);
       res.send(result);
     });
+    // get review
+    app.get("/myReview/:email", async (req, res) => {
+      console.log(req.params.email);
+      const result = await ordersCollection
+        .find({ email: req.params.email })
+        .toArray();
+      res.send(result);
+    });
 
     /// all order
     app.get("/allOrders", async (req, res) => {
